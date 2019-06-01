@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           '/register/register': (BuildContext context) => Register(),
           '/register/password_recovery': (BuildContext context) =>
               PasswordRecovery(),
-          '/home/': (BuildContext context) => Home(),
+          '/home': (BuildContext context) => Home(),
           '/search': (BuildContext context) =>
               ChangeNotifierProvider<ProviderUserSearch>(
                 builder: (_) => ProviderUserSearch(),

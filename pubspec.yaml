@@ -30,6 +30,7 @@ dependencies:
   mask_shifter: ^0.1.0
   provider: ^2.0.1+1
   carousel_slider: ^1.3.0
+  image_picker: 0.4.10
 
 dev_dependencies:
   flutter_test:

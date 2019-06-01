@@ -26,8 +26,8 @@ class Project {
     key = _key;
   }
 
-  Map<dynamic, dynamic> toJson() {
-    final Map<dynamic, dynamic> data = new Map<dynamic, dynamic>();
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['desc'] = this.desc;
     data['name'] = this.name;
     data['link'] = this.link;

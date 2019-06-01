@@ -39,7 +39,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "br.com.memorable.flutter_up"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -52,6 +52,11 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+    }
+
+    configurations.all {
+        resolutionStrategy.force 'com.android.support:support-core-utils:27.1.1'
+        resolutionStrategy.force 'com.android.support:support-v4:27.1.1'
     }
 }
 
