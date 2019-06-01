@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "791694655138",
+    "firebase_url": "https://flutter-up.firebaseio.com",
+    "project_id": "flutter-up",
+    "storage_bucket": "flutter-up.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791694655138:android:7d0f1c8f326da90d",
+        "android_client_info": {
+          "package_name": "br.com.memorable.flutter_up"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791694655138-f2j45j64lnpikbetq62fha3j91ivmsut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9u-1l7ruKppgdqhwi4mDktxsSumqQlNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791694655138-f2j45j64lnpikbetq62fha3j91ivmsut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
