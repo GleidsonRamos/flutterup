@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 //Text Box
 class RadioGroup extends StatelessWidget {
   int radioCount;
@@ -7,20 +8,25 @@ class RadioGroup extends StatelessWidget {
   Function callback;
   int valueGroup;
   String title;
-  RadioGroup({this.labels, this.values, this.radioCount, this.valueGroup, this.callback, this.title});
+  RadioGroup(
+      {this.labels,
+      this.values,
+      this.radioCount,
+      this.valueGroup,
+      this.callback,
+      this.title});
 
   List<Widget> radioWidgets = [];
 
   @override
   Widget build(BuildContext context) {
-
     radioWidgets.add(_createTitle(title));
 
-    for(int i = 0; i < radioCount; i++){
+    for (int i = 0; i < radioCount; i++) {
       _createChildren(i);
     }
 
-    var finalRadioGroup = new Row(
+    var finalRadioGroup = Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: radioWidgets,
     );
@@ -28,28 +34,32 @@ class RadioGroup extends StatelessWidget {
     return finalRadioGroup;
   }
 
-  _createRadioButton(int _radioValue, Function _handleRadioValueChange, int _valueGroup){
+  Widget _createRadioButton(
+      int _radioValue, Function _handleRadioValueChange, int _valueGroup) {
     return Padding(
       padding: const EdgeInsets.only(left: 8.0),
-      child: new Radio(
-            value: _radioValue,
-            groupValue: _valueGroup,
-            onChanged: _handleRadioValueChange,
-          ),
+      child: Radio(
+        value: _radioValue,
+        groupValue: _valueGroup,
+        onChanged: _handleRadioValueChange,
+      ),
     );
   }
 
-  _createRadioLabel(String _txtRadio){
-    return new Text(_txtRadio,
-          textAlign: TextAlign.start,
+  Widget _createRadioLabel(String _txtRadio) {
+    return Text(
+      _txtRadio,
+      textAlign: TextAlign.start,
     );
   }
-  _createTitle(String _txtRadio){
+
+  Widget _createTitle(String _txtRadio) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: new Text(_txtRadio,
+      child: Text(
+        _txtRadio,
         textAlign: TextAlign.start,
-        style: new TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 14.0,
         ),
@@ -57,10 +67,8 @@ class RadioGroup extends StatelessWidget {
     );
   }
 
-
-  _createChildren(int index) {
+  Widget _createChildren(int index) {
     radioWidgets.add(_createRadioButton(values[index], callback, valueGroup));
     radioWidgets.add(_createRadioLabel(labels[index]));
   }
-
 }

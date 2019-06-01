@@ -12,23 +12,19 @@ class ComboBox extends StatelessWidget {
 
   ComboBox({this.label, this.callback, this.valor, this.listItems});
 
-  String contruirString(value, text){
-    if(value != "0" && value != 0){
+  String contruirString(dynamic value, dynamic text) {
+    if (value != "0" && value != 0) {
       return value + " - " + text;
-    }
-    else{
+    } else {
       return "   ";
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: new FormField(
+      child: FormField<dynamic>(
         builder: (FormFieldState state) {
           return InputDecorator(
             decoration: InputDecoration(
@@ -36,12 +32,12 @@ class ComboBox extends StatelessWidget {
               labelText: label,
             ),
             isEmpty: valor == '',
-            child: new DropdownButtonHideUnderline(
-              child: new DropdownButton<String>(
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
                 items: listItems.map((Map item) {
-                  return new DropdownMenuItem<String>(
+                  return DropdownMenuItem<String>(
                     value: item['value'],
-                    child: new Text(contruirString(item['value'] , item['name'])),
+                    child: Text(contruirString(item['value'], item['name'])),
                   );
                 }).toList(),
                 value: valor,
