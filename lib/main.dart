@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_up/pages/project/details.dart';
-import 'package:flutter_up/provider/project/details.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_up/pages/search/user.dart';
-import 'package:flutter_up/provider/search/user.dart';
+import 'package:flutter_up/pages/home.dart';
+import 'package:flutter_up/pages/login/login.dart';
+import 'package:flutter_up/pages/register/password_recovery.dart';
+import 'package:flutter_up/pages/register/register.dart';
+import 'package:flutter_up/root_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,14 +12,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ChangeNotifierProvider<ProviderProjectDetail>(
-        builder: (_) => ProviderProjectDetail(),
-        child: ProjectDetailsPage(),
-      ),
-    );
+        title: 'FlutterUp',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Login(),
+        routes: <String, WidgetBuilder>{
+          '/login/login': (BuildContext context) =>  Login(),
+          '/register/register': (BuildContext context) =>  Register(),
+          '/register/password_recovery': (BuildContext context) =>  PasswordRecovery(),
+        });
   }
 }
