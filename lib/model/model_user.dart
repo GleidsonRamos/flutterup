@@ -37,7 +37,7 @@ class ModelUser {
 
       onSuccess();
       _isLoading = false;
-    }).catchError((Exception e) {
+    }).catchError((Object  e) {
       onFail();
       _isLoading = false;
     });
@@ -55,7 +55,7 @@ class ModelUser {
         .then((user) async {
       onSuccess(user.uid);
       _isLoading = false;
-    }).catchError((Exception e) {
+    }).catchError((Object  e) {
       onFail();
       _isLoading = false;
     });
@@ -84,7 +84,9 @@ class ModelUser {
             .collection("users")
             .document(firebaseUser.uid)
             .get();
-        _userData = docUser.data;
+        if (docUser.data != null) {
+          _userData = docUser.data;
+        }
       }
     }
   }

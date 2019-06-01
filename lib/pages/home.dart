@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
     _context = context;
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           centerTitle: true,
           title: Text("Flutter UP!"),
           actions: <Widget>[
@@ -68,7 +69,7 @@ class _HomeState extends State<Home> {
               alignment: Alignment.center,
               height: 70.0,
               width: width,
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(color: Colors.black),
               child: Text(
                 "Message",
                 style: TextStyle(
