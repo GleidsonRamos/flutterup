@@ -23,9 +23,9 @@ class ModelUser {
 
   void signIn(
       {@required String email,
-      @required String pass,
-      @required VoidCallback onSuccess,
-      @required VoidCallback onFail}) async {
+        @required String pass,
+        @required VoidCallback onSuccess,
+        @required VoidCallback onFail}) async {
     _isLoading = true;
 
     _auth
@@ -45,9 +45,9 @@ class ModelUser {
 
   void signUp(
       {@required String email,
-      @required String pass,
-      @required Function onSuccess,
-      @required VoidCallback onFail}) {
+        @required String pass,
+        @required Function onSuccess,
+        @required VoidCallback onFail}) {
     _isLoading = true;
 
     _auth
@@ -80,12 +80,11 @@ class ModelUser {
 
     if (_firebaseUser != null) {
       if (userData["Nome"] == null) {
-/*      TODO  DocumentSnapshot docUser = await Firestore.instance
-            .collection("Barbearias")
+        DocumentSnapshot docUser = await Firestore.instance
+            .collection("users")
             .document(firebaseUser.uid)
-            .get();*/
-     /*     _userData = docUser.data;*/
-             _userData = null;
+            .get();
+        _userData = docUser.data;
       }
     }
   }
