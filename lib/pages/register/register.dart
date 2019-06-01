@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,31 +14,24 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String _dataAtual =  DateTime.now().toString();
   FirebaseStorage storage = FirebaseStorage.instance;
-  final _nomeController = TextEditingController();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
-  final _confirmarEmailController = TextEditingController();
-  final _senhaController = TextEditingController();
-  final _confirmarSenhaController = TextEditingController();
-  final _telefoneController = TextEditingController();
-  final _cpfcnpjController = TextEditingController();
-  final _enderecoController = TextEditingController();
-  final _descricaoController = TextEditingController();
-  String _foto;
+  final _confirmEmailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _githubController = TextEditingController();
   bool _progressIndicator = false;
-  bool _alterarFoto = true;
   bool _userEdited = false;
   bool _fotoIsLoading = false;
-  String _nome,
+  String _name,
       _email,
-      _confirmarEmail,
-      _senha,
-      _confirmarSenha,
-      _telefone,
-      _cpfcnpj,
-      _endereco,
-      _descricao;
+      _confirmEmail,
+      _password,
+      _confirmPassword,
+      _phone,
+      _github;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -47,18 +41,20 @@ class _RegisterState extends State<Register> {
 
   @override
   void initState() {
-    _nomeController.addListener(onChange);
+    _nameController.addListener(onChange);
     _emailController.addListener(onChange);
-    _cpfcnpjController.addListener(onChange);
-    _enderecoController.addListener(onChange);
-    _descricaoController.addListener(onChange);
+    _confirmEmailController.addListener(onChange);
+    _passwordController.addListener(onChange);
+    _confirmPasswordController.addListener(onChange);
+    _phoneController.addListener(onChange);
+    _githubController.addListener(onChange);
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Cadastro da Barbearia",
+            "Create Your Account",
             style: TextStyle(fontSize: 16.0),
           ),
           centerTitle: true,
@@ -72,23 +68,23 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Digite o nome da barbearia.';
+                          return 'Enter your name.';
                         }
                       },
-                      onSaved: (input) => _nome = input,
+                      onSaved: (input) => _name = input,
                       decoration: InputDecoration(
-                          labelText: "Nome",
+                          labelText: "Name",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,
                           )),
-                      controller: _nomeController,
+                      controller: _nameController,
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.text,
                       style: TextStyle(
@@ -108,7 +104,7 @@ class _RegisterState extends State<Register> {
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Digite o email da barbearia.';
+                          return 'Enter your email.';
                         }
                       },
                       onSaved: (input) => _email = input,
@@ -126,31 +122,31 @@ class _RegisterState extends State<Register> {
                         color: Colors.black,
                       ),
                       maxLines: 1,
-                      maxLength: 60,
+                      maxLength: 30,
                     ),
                   ],
                 ),
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                   const SizedBox(
                       height: 5.0,
                     ),
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Confirme o email da barbearia.';
+                          return 'Confirm your email.';
                         } else if (input != _emailController.text) {
-                          return 'Os emails não combinam.';
+                          return 'Emails do not match.';
                         }
                       },
-                      onSaved: (input) => _confirmarEmail = input,
+                      onSaved: (input) => _confirmEmail = input,
                       decoration: InputDecoration(
-                          labelText: "Confirmar o Email",
+                          labelText: "Confirm Email",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,
                           )),
-                      controller: _confirmarEmailController,
+                      controller: _confirmEmailController,
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.emailAddress,
                       style: TextStyle(
@@ -158,32 +154,32 @@ class _RegisterState extends State<Register> {
                         color: Colors.black,
                       ),
                       maxLines: 1,
-                      maxLength: 60,
+                      maxLength: 30,
                     ),
                   ],
                 ),
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Digite a senha da barbearia.';
+                          return 'Enter your password.';
                         } else if (input.length < 6) {
-                          return 'A senha deve ter mais de 6 caracteres.';
+                          return 'Your password must be longer than 6 characters.';
                         }
                       },
-                      onSaved: (input) => _senha = input,
+                      onSaved: (input) => _password = input,
                       obscureText: true,
                       decoration: InputDecoration(
-                          labelText: "Senha",
+                          labelText: "Password",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,
                           )),
-                      controller: _senhaController,
+                      controller: _passwordController,
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.text,
                       style: TextStyle(
@@ -197,26 +193,26 @@ class _RegisterState extends State<Register> {
                 ),
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                   const SizedBox(
                       height: 5.0,
                     ),
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Confirme a senha da barbearia.';
-                        } else if (input != _senhaController.text) {
-                          return 'As senhas não combinam.';
+                          return 'Confirm your password.';
+                        } else if (input != _passwordController.text) {
+                          return 'Passwords do not match.';
                         }
                       },
-                      onSaved: (input) => _confirmarSenha = input,
+                      onSaved: (input) => _confirmPassword = input,
                       obscureText: true,
                       decoration: InputDecoration(
-                          labelText: "Confirmar a Senha",
+                          labelText: "Confirm Password",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,
                           )),
-                      controller: _confirmarSenhaController,
+                      controller: _confirmPasswordController,
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.text,
                       style: TextStyle(
@@ -230,28 +226,53 @@ class _RegisterState extends State<Register> {
                 ),
                 Column(
                   children: <Widget>[
-                    SizedBox(
+                    const SizedBox(
                       height: 5.0,
                     ),
                     TextFormField(
                       validator: (input) {
                         if (input.isEmpty) {
-                          return 'Digite o telefone/celular da barbearia.';
+                          return 'Enter your github.';
                         }
                       },
-                      onSaved: (input) => _telefone = input,
-                      inputFormatters: [
-                        MaskedTextInputFormatterShifter(
-                          maskONE: "(XX)XXXX-XXXX",
-                          maskTWO: "(XX)XXXXX-XXXX",),
-                      ],
+                      onSaved: (input) => _github = input,
                       decoration: InputDecoration(
-                          labelText: "Telefone/Celular",
+                          labelText: "Github",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,
                           )),
-                      controller: _telefoneController,
+                      controller: _githubController,
+                      textAlign: TextAlign.start,
+                      keyboardType: TextInputType.text,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      ),
+                      maxLines: 1,
+                      maxLength: 40,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                   const SizedBox(
+                      height: 5.0,
+                    ),
+                    TextFormField(
+                      validator: (input) {
+                        if (input.isEmpty) {
+                          return 'Enter your phone.';
+                        }
+                      },
+                      onSaved: (input) => _phone = input,
+                      decoration: InputDecoration(
+                          labelText: "Phone",
+                          hintStyle: TextStyle(
+                            decorationColor: Colors.black,
+                            color: Colors.black,
+                          )),
+                      controller: _phoneController,
                       textAlign: TextAlign.start,
                       keyboardType: TextInputType.numberWithOptions(),
                       style: TextStyle(
@@ -261,36 +282,39 @@ class _RegisterState extends State<Register> {
                       maxLines: 1,
                       maxLength: 20,
                     ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
                   ],
                 ),
                 _progressIndicator == false
                     ? Container(
-                  width: 200,
-                  height: 60, //Mesma altura do end do Tween
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    onTap: () {
-                      signUp();
-                    },
-                    child: Text(
-                      "Cadastrar",
-                      textAlign: TextAlign.start,
-                      style:
-                      TextStyle(fontSize: 18.0, color: Colors.white),
-                    ),
-                  ),
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                  ),
-                )
+                        width: 200,
+                        height: 60, //Mesma altura do end do Tween
+                        alignment: Alignment.center,
+                        child: GestureDetector(
+                          onTap: () {
+                            signUp();
+                          },
+                          child: Text(
+                            "Sign Up",
+                            textAlign: TextAlign.start,
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.white),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                        ),
+                      )
                     : const Padding(
-                  padding: EdgeInsets.only(top: 30, bottom: 100),
-                  child: Center(
-                      child: CircularProgressIndicator(
-                          valueColor:  AlwaysStoppedAnimation<Color>(
-                              Colors.black))),
-                ),
+                        padding: EdgeInsets.only(top: 30, bottom: 100),
+                        child: Center(
+                            child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.black))),
+                      ),
               ],
             ),
           ),
@@ -306,24 +330,19 @@ class _RegisterState extends State<Register> {
         setState(() {
           _progressIndicator = true;
         });
-/*        FirebaseUser user = await FirebaseAuth.instance
+        FirebaseUser user = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
             email: _email.trimRight().trimLeft(),
-            password: _senha);*/
+            password: _password);
 
-/*        Firestore.instance.collection("Barbearias").document(user.uid).setData({
-          "Nome":
-          transformaPrimeiraLetraEmMaiusculo(_nome.trimRight().trimLeft()),
-          "Longitude": "",
-          "Latitude": "",
-          "Criado_em":  DateTime.now(),
-          "Foto": _foto,
-          "Endereco": _endereco,
+/*        Firestore.instance.collection("users").document(user.uid).setData({
+          "Name":convertsFirstLetterToUppercase(_name.trimRight().trimLeft()),
+          "Created_In":  DateTime.now(),
           "Email": _email.trimRight().trimLeft(),
-          "Telefone": _telefone,
-          "CpfCnpj": _cpfcnpj,
-          "Descricao": _descricao,
+          "Phone": _phone,
+
         });*/
+
       } catch (e) {
         setState(() {
           _progressIndicator = false;
@@ -332,22 +351,20 @@ class _RegisterState extends State<Register> {
       } finally {
         ModelUser.instance.signIn(
           email: _email.trimRight().trimLeft(),
-          pass: _senha,
+          pass: _password,
           onSuccess: () {
-/*            Navigator.of(context).pushReplacement<dynamic, dynamic>(
-                MaterialPageRoute<dynamic>(builder: (context) => Home()));*/
+            Navigator.pushNamed(context, "/home");
           },
           onFail: () {
-            Navigator.of(context).pushReplacement<dynamic, dynamic>(
-                MaterialPageRoute<dynamic>(builder: (context) => Login()));
+            Navigator.pushNamed(context, "/login/login");
           },
         );
       }
     }
   }
 
-  String transformaPrimeiraLetraEmMaiusculo(String nome) {
-    String primeiraLetra = nome.substring(0, 1).toUpperCase();
-    return primeiraLetra + nome.substring(1, nome.length);
+  String convertsFirstLetterToUppercase(String name) {
+    String firstLetter = name.substring(0, 1).toUpperCase();
+    return firstLetter + name.substring(1, name.length);
   }
 }
