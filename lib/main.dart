@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: DriverRate(),
+        home: RootPage(),
         routes: <String, WidgetBuilder>{
           '/login/login': (BuildContext context) => Login(),
           '/register/register': (BuildContext context) => Register(),
