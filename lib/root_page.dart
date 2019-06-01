@@ -12,7 +12,7 @@ class _RootPageState extends State<RootPage> {
   dynamic _carregarUsuario() async {
     await ModelUser.instance.isLoggedIn() == true
         ? Navigator.of(context).pushReplacement<dynamic, dynamic>(
-            MaterialPageRoute<dynamic>(builder: (context) => MyHomePage()))
+            MaterialPageRoute<dynamic>(builder: (context) => Home()))
         : await Future.delayed(Duration(seconds: 3), () {
             Navigator.of(context).pushReplacement<dynamic, dynamic>(
                 MaterialPageRoute<dynamic>(builder: (context) => Login()));
