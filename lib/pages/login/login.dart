@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_up/pages/home.dart';
+import 'package:flutter_up/pages/register/password_recovery.dart';
+import 'package:flutter_up/pages/register/register.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -224,7 +226,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 _progressIndicator == true
                     ? Container()
                     : Padding(
-                  padding: EdgeInsets.only(top: 70, bottom: 50),
+                  padding: EdgeInsets.only(top: 50, bottom: 50),
                   child: ButtonTheme(
                     minWidth: 270.0,
                     height: 50.0,
