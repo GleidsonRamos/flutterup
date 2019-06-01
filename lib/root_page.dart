@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_up/pages/home.dart';
 import 'package:flutter_up/pages/login/login.dart';
+import 'package:flutter_up/pages/projects/projects_add.dart';
 import 'model/model_user.dart';
 
 class RootPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class _RootPageState extends State<RootPage> {
   dynamic _carregarUsuario() async {
     await ModelUser.instance.isLoggedIn() == true
         ? Navigator.of(context).pushReplacement<dynamic, dynamic>(
-            MaterialPageRoute<dynamic>(builder: (context) => Home()))
+            MaterialPageRoute<dynamic>(builder: (context) => ProjectsAdd()))
         : await Future.delayed(Duration(seconds: 3), () {
             Navigator.of(context).pushReplacement<dynamic, dynamic>(
                 MaterialPageRoute<dynamic>(builder: (context) => Login()));

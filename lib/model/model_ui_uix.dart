@@ -40,12 +40,6 @@ class Modelproject {
     CollectionReference reference = Firestore.instance.collection("uiux");
 
     reference.document(ModelUser.instance.firebaseUser.uid).setData(project.toJson());
-
-    reference.snapshots().listen((querySnapshot) {
-      querySnapshot.documents.forEach((doc) {
-        _projectaDataUiUx.add(Project.fromJson(doc.data, doc.documentID));
-      });
-    });
   }
 
   Future<Project> getProject(String id) async{

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class FotoUpload extends StatelessWidget {
   String titulo;
   Function callback;
-  String foto;
+  String foto = "";
 
   var BASE64 = const Base64Codec();
 
@@ -24,7 +24,7 @@ class FotoUpload extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             ListTile(
-              title: Text('Enviar Foto',
+              title: Text('Send Photo',
                   style: TextStyle(fontWeight: FontWeight.w500)),
               subtitle: Text(titulo),
               leading: Icon(
@@ -35,7 +35,7 @@ class FotoUpload extends StatelessWidget {
             Center(
               child: foto == null
                   ? new Text("")
-                  : new Image.memory(BASE64.decode(foto), height: 200.0),
+                  : new Image.network(foto)
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -50,7 +50,7 @@ class FotoUpload extends StatelessWidget {
                     Icon(Icons.add_a_photo),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Tirar Nova Foto"),
+                      child: Text("Take a Pic"),
                     )
                   ],
                 ),
