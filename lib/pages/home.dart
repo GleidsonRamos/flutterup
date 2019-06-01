@@ -9,9 +9,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  BuildContext _context;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+
+    _context = context;
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -98,32 +102,25 @@ class _HomeState extends State<Home> {
         ),
       );
   }
-}
 
-Widget _buildCategoryItens(String level, String title, int category, context){
-  return Column(
-    children: <Widget>[
+  void gotoProjects(){
+    Navigator.pushNamed(_context, "/projects");
+  }
+
+  Widget _buildCategoryItens(String level, String title, int category){
+    return Column(
+      children: <Widget>[
         Text(title),
         FloatingActionButton(
-          onPressed: (){
-            switch(category){
-              case 1:
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Projects())
-                );
-                break;
-            }
-          },
+          heroTag: title+"tag",
+          onPressed: () => gotoProjects(),
           backgroundColor: Colors.white,
           child: Text(
             level,
             style: TextStyle(color: Colors.black),
           ),
         )
-    ],
-  );
-
-
+      ],
+    );
 
 }
