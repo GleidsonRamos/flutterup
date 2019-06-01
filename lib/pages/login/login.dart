@@ -134,7 +134,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
           email: _email.trimRight().trimLeft(),
           pass: _password,
           onSuccess: () {
-            Navigator.pushNamed(context, "/home");
+            Navigator.pushReplacementNamed(context, "/home");
           },
           onFail: _onFail);
     }
