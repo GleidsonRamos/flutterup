@@ -30,7 +30,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
             Padding(
               padding: EdgeInsets.only(top: 70, bottom: 32),
               child: Image.asset(
-                "assets/images/fundo.png",
+                "assets/images/flutter_logo.png",
                 width: 180,
                 height: 180,
                 fit: BoxFit.contain,
@@ -48,26 +48,26 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               child: TextFormField(
                 validator: (input) {
                   if (input.isEmpty) {
-                    return 'Por favor digite o seu e-mail';
+                    return 'Enter your email.';
                   }
                 },
                 onSaved: (input) => _email = input,
                 obscureText: false,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                 ),
                 decoration: InputDecoration(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person_outline,
                     color: Colors.black,
                   ),
                   border: InputBorder.none,
                   hintText: "Email",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
-                  contentPadding: EdgeInsets.only(
+                  contentPadding: const EdgeInsets.only(
                     top: 30.0,
                     right: 30.0,
                     bottom: 30.0,
@@ -88,7 +88,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               child: TextFormField(
                 validator: (input) {
                   if (input.length < 6) {
-                    return 'A senha deve ter mais de 6 caracteres';
+                    return 'Your password must be longer than 6 characters.';
                   }
                 },
                 onSaved: (input) => _password = input,
@@ -97,17 +97,17 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                   color: Colors.black,
                 ),
                 decoration: InputDecoration(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.lock_outline,
                     color: Colors.black,
                   ),
                   border: InputBorder.none,
                   hintText: "Password",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                     color: Colors.black,
                     fontSize: 15,
                   ),
-                  contentPadding: EdgeInsets.only(
+                  contentPadding: const EdgeInsets.only(
                     top: 30.0,
                     right: 30.0,
                     bottom: 30.0,
@@ -130,7 +130,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       setState(() {
         _progressIndicator = true;
       });
-   ModelUser.instance.signIn(
+      ModelUser.instance.signIn(
           email: _email.trimRight().trimLeft(),
           pass: _password,
           onSuccess: () {
@@ -162,7 +162,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w400,
             color: Colors.black,
             fontSize: 13,
             letterSpacing: 0.5),
@@ -181,7 +181,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w400,
             color: Colors.black,
             fontSize: 13,
             letterSpacing: 0.5),
@@ -199,7 +199,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
             image: DecorationImage(
                 colorFilter: ColorFilter.mode(
                     Colors.grey.withOpacity(0.0), BlendMode.luminosity),
-                image: AssetImage("assets/images/fundo.png"),
+                image: AssetImage("assets/images/fundo.jpg"),
                 fit: BoxFit.cover)),
         child: ListView(
           padding: EdgeInsets.zero,
