@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 
 class Textbox extends StatelessWidget {
   String label;
-  var inputType;
+  dynamic inputType;
   Function callback;
-  var controller;
-  var focusNode;
+  dynamic controller;
+  dynamic focusNode;
   TextInputFormatter inputFormatter;
 
   Textbox({this.label, this.callback, this.inputType, this.controller, this.inputFormatter, this.focusNode});
