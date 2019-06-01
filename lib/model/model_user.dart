@@ -37,7 +37,7 @@ class ModelUser {
 
       onSuccess();
       _isLoading = false;
-    }).catchError((Exception e) {
+    }).catchError((Object  e) {
       onFail();
       _isLoading = false;
     });
@@ -55,7 +55,7 @@ class ModelUser {
         .then((user) async {
       onSuccess(user.uid);
       _isLoading = false;
-    }).catchError((Exception e) {
+    }).catchError((Object  e) {
       onFail();
       _isLoading = false;
     });
@@ -79,12 +79,14 @@ class ModelUser {
     }
 
     if (_firebaseUser != null) {
-      if (userData["Nome"] == null) {
+      if (userData["Name"] == null) {
         DocumentSnapshot docUser = await Firestore.instance
             .collection("users")
             .document(firebaseUser.uid)
             .get();
-        _userData = docUser.data;
+        if (docUser.data != null) {
+          _userData = docUser.data;
+        }
       }
     }
   }

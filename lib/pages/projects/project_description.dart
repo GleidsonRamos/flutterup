@@ -14,7 +14,7 @@ class _ProjectDescriptionState extends State<ProjectDescription> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Colors.black,
         title: Text(
           "Flutter Up",
           style: TextStyle(fontSize: 18.0),
@@ -23,8 +23,9 @@ class _ProjectDescriptionState extends State<ProjectDescription> {
       ),
       floatingActionButton: widget.openedToVote
           ? FloatingActionButton(
+        backgroundColor: Colors.black,
               onPressed: () {},
-              child: Icon(Icons.star),
+              child: Icon(Icons.star, color: Colors.amber,),
             )
           : Container(),
       body: ListView(
@@ -174,7 +175,7 @@ class _ProjectDescriptionState extends State<ProjectDescription> {
                       height: 10.0,
                     ),
                     Text(
-                      "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.",
+                      "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado.",
                       style: TextStyle(),
                       textAlign: TextAlign.justify,
                     ),
@@ -192,7 +193,7 @@ class _ProjectDescriptionState extends State<ProjectDescription> {
                           minWidth: 270.0,
                           height: 50.0,
                           child: RaisedButton(
-//                            color: Colors.black,
+                            color: Colors.black,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),

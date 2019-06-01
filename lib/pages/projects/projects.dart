@@ -12,6 +12,7 @@ class _ProjectsState extends State<Projects> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text(
           "My Projects - UI/UX",
           style: TextStyle(fontSize: 18.0),
