@@ -36,7 +36,7 @@ class _RootPageState extends State<RootPage> {
                 height: 30.0,
               ),
               Image.asset(
-                "assets/images/fundo.png",
+                "assets/images/logo.png",
                 width: 400,
                 height: 400,
                 fit: BoxFit.contain,
@@ -49,7 +49,7 @@ class _RootPageState extends State<RootPage> {
               const SizedBox(
                 height: 25.0,
               ),
-              Text(
+             const Text(
                 "Por favor, aguarde...",
                 style: TextStyle(
                   color: Colors.black,
