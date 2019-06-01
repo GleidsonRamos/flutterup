@@ -335,13 +335,14 @@ class _RegisterState extends State<Register> {
             email: _email.trimRight().trimLeft(),
             password: _password);
 
-/*        Firestore.instance.collection("users").document(user.uid).setData({
-          "Name":convertsFirstLetterToUppercase(_name.trimRight().trimLeft()),
-          "Created_In":  DateTime.now(),
-          "Email": _email.trimRight().trimLeft(),
-          "Phone": _phone,
+        Map<String, dynamic> lista = new Map<String, dynamic>();
+        lista["Name"] = convertsFirstLetterToUppercase(_name.trimRight().trimLeft());
+        lista["Created_In"] = DateTime.now();
+        lista["Email"] = _email.trimRight().trimLeft();
+        lista["Phone"] = _phone;
+        lista["Github"] = _github;
 
-        });*/
+        Firestore.instance.collection("users").document(user.uid).setData(lista);
 
       } catch (e) {
         setState(() {
@@ -353,7 +354,7 @@ class _RegisterState extends State<Register> {
           email: _email.trimRight().trimLeft(),
           pass: _password,
           onSuccess: () {
-            Navigator.pushNamed(context, "/home");
+            Navigator.pushNamed(context, "pages/home");
           },
           onFail: () {
             Navigator.pushNamed(context, "/login/login");
