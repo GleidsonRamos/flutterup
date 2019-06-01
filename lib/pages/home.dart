@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_up/pages/projects/projects.dart';
 
 
 class Home extends StatefulWidget {
@@ -78,8 +79,8 @@ class _HomeState extends State<Home> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  _buildCategoryItens("1", "Code Quality", 1),
-                  _buildCategoryItens("1", "UI/UX", 2),
+                  _buildCategoryItens("1", "Code Quality", 1, context),
+                  _buildCategoryItens("1", "UI/UX", 2, context),
                 ],
               ),
             ),
@@ -88,8 +89,8 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    _buildCategoryItens("1", "Performance", 3),
-                    _buildCategoryItens("1", "Security", 4),
+                    _buildCategoryItens("1", "Performance", 3, context),
+                    _buildCategoryItens("1", "Security", 4, context),
                   ],
                 ),
             ),
@@ -99,12 +100,21 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget _buildCategoryItens(String level, String title, int category){
+Widget _buildCategoryItens(String level, String title, int category, context){
   return Column(
     children: <Widget>[
         Text(title),
         FloatingActionButton(
-          onPressed: null,
+          onPressed: (){
+            switch(category){
+              case 1:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Projects())
+                );
+                break;
+            }
+          },
           backgroundColor: Colors.white,
           child: Text(
             level,
@@ -114,31 +124,6 @@ Widget _buildCategoryItens(String level, String title, int category){
     ],
   );
 
-//    Column(
-//    children: <Widget>[
-//      Text(title),
-//      Container(
-//
-//        width: 70.0,
-//        height: 70.0,
-//        decoration: new BoxDecoration(
-//            shape: BoxShape.circle,
-//            border: Border.all(width: 0.3, color: Colors.grey[400])),
-//        child: Stack(
-//          children: <Widget>[
-//            Positioned(
-//              top: 25.0,
-//              left: 30.0,
-//              child: Text(
-//                level,
-//                style: TextStyle(
-//                    color: Colors.grey[700],
-//                    fontWeight: FontWeight.w700),
-//              ),
-//            )
-//          ],
-//        ),
-//      ),
-//    ],
-//  );
+
+
 }
