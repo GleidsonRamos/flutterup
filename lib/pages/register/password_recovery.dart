@@ -28,7 +28,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
           _requestPassword();
         },
         child: Text(
-          "Alterar senha",
+          "Reset Password",
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 18.0,
@@ -44,24 +44,24 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text("Você deseja resetar a sua senha ?"),
+            title: const Text("You want to reset your password ?"),
             content:
-                Text("Um email lhe será enviado com as devidas instruções."),
+            const Text("An email will be sent to you with instructions to reset your password."),
             actions: <Widget>[
               FlatButton(
-                child: Text("Cancelar"),
+                child: Text("Cancel"),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
               FlatButton(
-                child: Text("Sim"),
+                child: Text("Yes"),
                 onPressed: () {
                   Navigator.pop(context);
                   ModelUser.instance.recoverPass(_emailController.text);
                   _scaffoldKey.currentState.showSnackBar(SnackBar(
                     content: Text(
-                      "Confira o seu e-mail!",
+                      "Check your email",
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -82,7 +82,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
         key: _scaffoldKey,
         appBar: AppBar(
           title: Text(
-            "Recuperar Senha",
+            "Recover Password",
             style: TextStyle(fontSize: 16.0),
           ),
           centerTitle: true,
@@ -105,9 +105,7 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
                     TextFormField(
                       validator: (dynamic input) {
                         if (input.isEmpty) {
-                          return 'Confirme o email da barbearia.';
-                        } else if (input != _emailController.text) {
-                          return 'Os emails não combinam.';
+                          return 'Enter your email.';
                         }
                       },
                       onSaved: (input) => _email = input,
@@ -137,14 +135,14 @@ class _PasswordRecoveryState extends State<PasswordRecovery> {
                     TextFormField(
                       validator: (dynamic input) {
                         if (input.isEmpty) {
-                          return 'Confirme o email da barbearia.';
+                          return 'Confirm your email.';
                         } else if (input != _emailController.text) {
-                          return 'Os emails não combinam.';
+                          return 'Emails do not match.';
                         }
                       },
                       onSaved: (input) => _confirmarEmail = input,
                       decoration: InputDecoration(
-                          labelText: "Confirmar o Email",
+                          labelText: "Confirm email",
                           hintStyle: TextStyle(
                             decorationColor: Colors.black,
                             color: Colors.black,

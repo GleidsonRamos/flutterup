@@ -79,7 +79,7 @@ class ModelUser {
     }
 
     if (_firebaseUser != null) {
-      if (userData["Nome"] == null) {
+      if (userData["Name"] == null) {
         DocumentSnapshot docUser = await Firestore.instance
             .collection("users")
             .document(firebaseUser.uid)
