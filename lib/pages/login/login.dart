@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_up/model/model_user.dart';
 import 'package:flutter_up/pages/home.dart';
 import 'package:flutter_up/pages/register/password_recovery.dart';
 import 'package:flutter_up/pages/register/register.dart';
@@ -129,14 +130,13 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       setState(() {
         _progressIndicator = true;
       });
-/*   TODO   ModelUser.instance.signIn(
+   ModelUser.instance.signIn(
           email: _email.trimRight().trimLeft(),
           pass: _password,
           onSuccess: () {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => MyHomePage()));
+            Navigator.pushNamed(context, "/home");
           },
-          onFail: _onFail);*/
+          onFail: _onFail);
     }
   }
 
@@ -145,7 +145,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       _progressIndicator = false;
     });
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text("Falha ao Entrar!"),
+      content: const Text("Falha ao Entrar!"),
       backgroundColor: Colors.redAccent,
       duration: Duration(seconds: 2),
     ));
@@ -153,11 +153,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   Widget RegisterButton() {
     return FlatButton(
-      padding: EdgeInsets.only(top: 120),
+      padding: const EdgeInsets.only(top: 120),
       onPressed: () {
         Navigator.pushNamed(context, "/register/register");
       },
-      child: Text(
+      child: const Text(
         "Don`t have an account ? Sign Up now!",
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
@@ -172,11 +172,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   Widget ForgotPassword() {
     return FlatButton(
-      padding: EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10),
       onPressed: () {
         Navigator.pushNamed(context, "/register/password_recovery");
       },
-      child: Text(
+      child: const Text(
         "Forgot Password?",
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
@@ -226,27 +226,27 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                 _progressIndicator == true
                     ? Container()
                     : Padding(
-                  padding: EdgeInsets.only(top: 50, bottom: 50),
-                  child: ButtonTheme(
-                    minWidth: 270.0,
-                    height: 50.0,
-                    child: RaisedButton(
-                      color: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      onPressed: () async {
-                        signIn();
-                      },
-                      padding: EdgeInsets.all(12),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 18.0),
-                      ),
-                    ),
-                  ),
-                )
+                        padding: EdgeInsets.only(top: 50, bottom: 50),
+                        child: ButtonTheme(
+                          minWidth: 270.0,
+                          height: 50.0,
+                          child: RaisedButton(
+                            color: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            onPressed: () async {
+                              signIn();
+                            },
+                            padding: EdgeInsets.all(12),
+                            child: Text(
+                              'Login',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 18.0),
+                            ),
+                          ),
+                        ),
+                      )
               ],
             ),
             Padding(
@@ -254,8 +254,8 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
               child: Center(
                   child: _progressIndicator == true
                       ? CircularProgressIndicator(
-                      valueColor:
-                      AlwaysStoppedAnimation<Color>(Colors.black))
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.black))
                       : Container()),
             ),
           ],
